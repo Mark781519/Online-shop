@@ -2,9 +2,11 @@
 
 const Footer = () => {
     return (
-    <div className="footer">
-
-    </div>
+    <footer className="footer">
+        <div className="width-limiter">
+            <strong className="footer__copyright">All Rights Reserved, 2021</strong>
+        </div>
+    </footer>
     )
 }
 

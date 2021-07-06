@@ -1,5 +1,42 @@
-@import './styles/variables.css';
+/* @import './styles/variables.css'; */
 @import './styles/common.css';
+:root {
+  /* Colors */
+  --dark-clr-800: #424040;
+  --dark-clr-900: #0c0c0c;
+  
+  --light-clr-100: #fff;
+  --light-clr-200: #f6f6f6;
+  --light-clr-300: #ccc;
+  
+  --primary-clr-500: #c02425;
+  --secondary-clr-500: #f0cb35;
+
+  /* Fonts */
+  --primary-ff: 'Montserrat', sans-serif;
+  --fz-xs: 1rem;
+  --fz-sm: 1.4rem;
+  --fz-md: 1.6rem;
+  --fz-lg: 2rem;
+
+   /* Gutters */
+  --p-xs: 1rem;
+  --p-sm: 1.5rem;
+  --p-md: 2rem;
+  --p-lg: 2.5rem;
+  --p-xl: 3rem;
+  
+  --m-xs: 1rem;
+  --m-sm: 1.5rem;
+  --m-md: 2rem;
+  --m-lg: 2.5rem;
+  --m-xl: 3rem;
+  
+   /* Defaults */
+  --default-fz: var(--fz-md);
+  --default-ff: var(--primary-ff);
+  --default-clr: var(--dark-clr-900);
+}
 
 * {
   margin: 0;
@@ -70,7 +107,6 @@ a {
 .button {
   cursor: pointer;
   border-radius: 0.3rem;
-
 }
 
 .button--primary {
@@ -89,9 +125,9 @@ a {
 
 .button--secondary {
   padding: var(--p-sm) var(--p-lg);
-  border: 0.1rem solid var(--tertiary-clr-500);
-  background-color: var(--tertiary-clr-500);
-  color: var(--light-clr-10);
+  border: 0.1rem solid var(--dark-clr-800);
+  background-color: var(--dark-clr-800);
+  color: var(--light-clr-100);
   transition: background-color 200ms ease;
 }
 
@@ -115,7 +151,7 @@ a {
   position: absolute;
   top: 0;
   right: 0;
-  border: 0.1rem solid var(--tertiary-clr-500);
+  border: 0.1rem solid var(--dark-clr-800);
 }
 
 .cart-button__button {
@@ -329,7 +365,7 @@ a {
 
 .pagination__button--active {
   background-color: var(--light-clr-100);
-  border: 0.1rem solid var(--tertiary-clr-500);
+  border: 0.1rem solid var(--dark-clr-800);
   color: var(--default-clr);
   cursor: default;
 }
@@ -344,7 +380,7 @@ a {
 .product {
   padding: var(--p-sm);
   border-radius: 0.3rem;
-  box-shadow: 0 0 1.2rem rgba(var(--dark-clr-900), 0.15);
+  box-shadow: 0 0 1.2rem rgb(12 12 12 / 15%);
 }
 
 .product__header {
@@ -466,7 +502,7 @@ a {
 /* Rating */
 
 .rating {
-  color: var(--tertiary-clr-500);
+  color: var(--dark-clr-800);
 }
 
 /* Toolbar */
@@ -485,7 +521,7 @@ a {
 
 .toolbar__categories {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 
@@ -495,14 +531,12 @@ a {
 }
 
 .toolbar__button--active {
-  background-color: var(light-clr-100);
-  border: 0.1rem solid var(--tertiary-clr-50);
+  background-color: var(--light-clr-100);
+  border: 0.1rem solid var(--dark-clr-800);
   color: var(--default-clr);
   cursor: default;
 }
 
-.toolbar__button:hover {
+.toolbar__button--active:hover {
   background-color: var(--light-clr-100);
 }
-
-

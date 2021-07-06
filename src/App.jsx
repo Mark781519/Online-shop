@@ -1,21 +1,26 @@
 import React from "react";
 import Footer from './components/Footer';
-import Header from './components/Header';
+import Header from './components/Header/Header';
+import Toolbar from './components/Toolbar/Toolbar';
+import ProductList from './components/ProductList';
+import { AppStateProvider } from './context/AppContext'
 
-import Toolbar from './components/Toolbar';
 
 const App = () => {
   return (
-    <div className="app">
-      <Header />
-      <Toolbar />
-      <div className="width-limiter app__content">
+    <AppStateProvider>
+      <div className="app">
+        <Header />
+        <Toolbar />
+        <div className="width-limiter app__content">
             <aside className="app__sidebar">Sidebar (WIP)</aside>
-            <main className="app__main">
-            </main>
-      <Footer />
+            <div className="app__main">
+              <ProductList />
+            </div>
+        </div>
+        <Footer />
       </div>
-    </div>
+    </AppStateProvider>
   )
 }
 
