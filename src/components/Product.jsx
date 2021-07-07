@@ -4,7 +4,7 @@ import {useState, memo} from 'react';
 
 const Product = (props) => {
     const [clicked, setClick] = useState(false);
-    const { id, category, model, manufacturer, country, imageSrc, price, rating, description, warranty } = props;
+    const { id, category, model, manufacturer, country, imageSrc, price, rating, description, warranty } = props.data;
     const addToCart = useAddToCart();
 
     const handleClick = () => {

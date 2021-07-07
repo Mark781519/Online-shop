@@ -10,6 +10,7 @@ const initialState = {
     filter: "",
     category: "All",
     cartItems: [],
+    currentPage: 1,
 }
 
 
@@ -20,24 +21,32 @@ function reducer(state, action) {
                 ...state,
                 items: products.filter(x => x.category === action.category),
                 filter: "",
-                category: action.category
+                category: action.category,
+                currentPage: 1
             }
         case "showAllCategory":
             return {
                 ...state,
                 items: products,
                 filter: "",
-                category: action.value
+                category: action.value,
+                currentPage: 1
             }
         case "filterItems":
             return {
                 ...state,
-                filter: action.value
+                filter: action.value,
+                currentPage: 1
             }
         case "AddToCart":
             return {
                 ...state,
                 cartItems:[action.value, ...state.cartItems]
+            }
+        case "changeCurrentPage":
+            return {
+                ...state,
+                currentPage: action.value
             }
         default:
             throw Error("something went wrong");
@@ -107,4 +116,13 @@ export const useAddToCart = () => {
     }
 
     return addToCart;
+}
+export const useChangePage = () => {
+    const dispatch = useDispatchContext();
+
+    function changeCurrentPage(value) {
+        dispatch({type: "changeCurrentPage", value})
+    }
+
+    return changeCurrentPage;
 }
