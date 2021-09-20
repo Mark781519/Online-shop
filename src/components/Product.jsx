@@ -1,17 +1,22 @@
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
-import { useAddToCart }  from '../context/AppContext';
-import {useState, memo} from 'react';
+import { useAddToCart, useAppContext, useToggleWishlist }  from '../context/AppContext';
+import {memo} from 'react';
 
 const Product = (props) => {
-    const [clicked, setClick] = useState(false);
+    const state = useAppContext();
     const { id, category, model, manufacturer, country, imageSrc, price, rating, description, warranty } = props.data;
     const addToCart = useAddToCart();
+    const toggleWishlist = useToggleWishlist();
 
-    const handleClick = () => {
-        setClick(true);
-        addToCart(props);
+    const clickAddToCart = () => {
+        addToCart(props.data);
+    }
+    const clickWishlistButton = () => {
+        toggleWishlist(props.data);
     }
 
+    const disabled = state.cartList.includes(props.data.id);
+    const favorite = state.wishlist.includes(props.data.id);
     return (
         <div className="product" data-id={id}>
 
@@ -34,24 +39,26 @@ const Product = (props) => {
                         <p className="product__description">{description}</p>
                 </div>
 
-                <div className="product__footer">
-                    <div className="product__price-wrapper">
-                        <span className="product__label">Price</span>
-                        <div>
-                            <span className="product__price">{price}</span>
-                            <span className="product__currency">USD</span>
+                <div className="product__bottom">
+                    <div className="product__footer">
+                        <div className="product__price-wrapper">
+                            <span className="product__label">Price</span>
+                            <div>
+                                <span className="product__price">{price}</span>
+                                <span className="product__currency">USD</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                     <div className="product__actions">
-                        <button className="button button--primary product__button product__button--wishlist" type="button" title="Add to Wishlist">
+                        <button className={!favorite ? "button button--primary product__button" : "button toggledButton product__button" } type="button" title="Add to Wishlist" onClick={clickWishlistButton}>
                             <FaHeart className="fas fa-heart product__icon" />
                         </button>
-                        <button className="button button--primary product__button product__button--cart" type="button" disabled={clicked} title="Add to Cart" onClick={handleClick}>
+                        <button className={!disabled ? "button button--primary product__button" : "button button--secondary product__button" } type="button" disabled={disabled} title="Add to Cart" onClick={clickAddToCart}>
                             <FaShoppingCart className="fas fa-shopping-bag product__icon" />
                         </button>
                     </div>
+                </div>
             </div>
     )
 }

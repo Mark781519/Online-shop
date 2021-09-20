@@ -9,25 +9,28 @@ const ProductList = () => {
         item.manufacturer.toLowerCase().includes(state.filter.toLocaleLowerCase()));
 
     return (
-        <>
-        {state.items.length > 0 ? (
-            <div>
-                {filteredItems.length > 0 ? (
-                    <Pagination 
-                        data={filteredItems}
-                        RenderComponent={Product}
-                        pageLimit={3}
-                        dataLimit={9}
-                        currentPage={state.currentPage}
+        <div className="width-limiter app__content">
+            <aside className="app__sidebar">Sidebar (WIP)</aside>
+            <div className="app__main">
+                {state.items.length > 0 ? (
+                    <div>
+                        {filteredItems.length > 0 ? (
+                            <Pagination 
+                            data={filteredItems}
+                            RenderComponent={Product}
+                            pageLimit={3}
+                            dataLimit={9}
+                            currentPage={state.currentPage}
                     />
+                    ) : (
+                        <h1>Nothing was found for your query</h1>
+                    )}
+                    </div>
                 ) : (
-                    <h1>Nothing was found for your query</h1>
+                    <h1>No Products to display</h1>
                 )}
             </div>
-        ) : (
-            <h1>No Products to display</h1>
-        )}
-        </>
+        </div>
     )
 }
 
